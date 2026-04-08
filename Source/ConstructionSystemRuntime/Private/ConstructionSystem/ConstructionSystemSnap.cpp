@@ -1,7 +1,7 @@
 //$ Copyright 2015-24, Code Respawn Technologies Pvt Ltd - All Rights Reserved $//
 
 #include "ConstructionSystem/ConstructionSystemSnap.h"
-
+#include "SceneView.h"
 #include "Components/SphereComponent.h"
 #include "PrimitiveSceneProxy.h"
 #include "SceneManagement.h"
