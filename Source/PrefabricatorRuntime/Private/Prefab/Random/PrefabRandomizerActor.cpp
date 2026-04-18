@@ -1,7 +1,7 @@
 //$ Copyright 2015-24, Code Respawn Technologies Pvt Ltd - All Rights Reserved $//
 
 #include "Prefab/Random/PrefabRandomizerActor.h"
-
+#include "TimerManager.h"
 #include "Prefab/PrefabActor.h"
 #include "Prefab/PrefabTools.h"
 #include "Prefab/Random/PrefabSeedLinker.h"
@@ -59,8 +59,18 @@ void APrefabRandomizer::BeginPlay()
 	Super::BeginPlay();
 
 	if (bRandomizeOnBeginPlay) {
-		int32 Seed = FMath::Abs(SeedOffset + (int32)GetTypeHash(GetActorLocation()));
-		Randomize(Seed);
+		const int32 Seed = FMath::Abs(SeedOffset + (int32)GetTypeHash(GetActorLocation()));
+
+		if (UWorld* World = GetWorld())
+		{
+			World->GetTimerManager().SetTimerForNextTick([this, Seed]()
+				{
+					if (IsValid(this))
+					{
+						Randomize(Seed);
+					}
+				});
+		}
 	}
 }
 
