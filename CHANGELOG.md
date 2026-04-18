@@ -1,6 +1,11 @@
 CHANGELOG: Prefabricator
 ========================
-
+Version 1.13.1 (UE5.7 Fix - Unofficial)
+--------------------------------------
+* FIX: Resolved crash in PrefabRandomizer when used with streamed levels (Dungeon Architect / Snap Grid Flow)
+* FIX: Randomize() is now deferred using SetTimerForNextTick() to ensure proper actor initialization
+* NOTE: Equivalent to Blueprint Delay(0.0), but implemented safely in C++
+  
 Version 1.13.0
 -------------
 * New: Unreal Engine 5.5 support
